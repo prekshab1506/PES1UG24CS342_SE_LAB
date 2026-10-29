@@ -1,24 +1,22 @@
-\# Lab 5 — Static Code Analysis
+﻿# Lab 5 — Static Code Analysis
 
+## Issues Identified and Fixes Applied
 
+| Tool | Issue | Description | Fix Applied |
+|---|---|---|---|
+| Bandit | Shell command execution | `os.system()` executes a constructed shell command. | Removed the unused helper that executed the shell command. |
+| Bandit | Hard-coded password | A password was stored directly in the source code. | Removed the unused hard-coded credential. |
+| Bandit | MD5 usage | MD5 was used to compare normalized exam answers. | Removed hashing and compared normalized answer strings directly. |
+| Bandit | Insecure random selection | `random.choice()` was used to select a bonus question. | Replaced it with `secrets.choice()`. |
+| Pylint | Mutable default argument | A default dictionary could retain state across function calls. | Changed the default to `None` and initialized a dictionary inside the function. |
+| Pylint | Function naming | Function names did not follow standard Python naming conventions. | Renamed functions using `snake_case`. |
+| Pylint | Missing docstrings | Functions and the module lacked documentation. | Added a module docstring and function docstrings. |
+| Pylint | Code quality | The code contained avoidable complexity and style issues. | Used clearer variable names, `enumerate()`, and simplified conditional logic. |
+| Flake8 | Formatting violations | The original program contained whitespace and formatting violations. | Corrected formatting, spacing, and blank-line issues. |
 
-| Issue | Type | Line(s) | Description | Fix Approach |
+## Validation Results
 
-|---|---|---|---|---|
-
-| Shell command execution | Security | Fill from Bandit report | `os.system()` executes a constructed shell command. | Remove the unused helper or replace unsafe command construction with a safer approach. |
-
-| Hard-coded password | Security | Fill from Bandit report | A password is stored directly in the source code. | Remove the unused credential or use an appropriate external configuration mechanism. |
-
-| MD5 usage | Security / design | Fill from Bandit report | MD5 is unnecessary for comparing normalized exam answers. | Compare normalized answer strings directly. |
-
-| Mutable default argument | Bug / quality | Fill from Pylint report | A default dictionary can retain state across calls. | Use `None` as the default and initialize a new dictionary inside the function. |
-
-| Function naming | Style / quality | Fill from Pylint report | Function names do not follow the conventional Python naming style. | Rename functions using `snake\_case`. |
-
-| Formatting violations | Style | Fill from Flake8 report | Whitespace, blank lines, or indentation do not follow the expected style. | Correct the reported formatting issues. |
-
-
-
-
+- **Pylint:** Final score was 10.00/10.
+- **Bandit:** No issues reported in the final scan.
+- **Flake8:** The final report was empty, indicating no violations were reported.
 
